@@ -1,6 +1,7 @@
 
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
+const schedule = require('node-schedule');
 
 const client = new Client({
     authStrategy: new LocalAuth(),
@@ -20,6 +21,44 @@ client.on('qr', (qr) => {
 
 client.on('ready', () => {
     console.log('Client is ready!');
+
+      // Definisikan nomor target dan pesan
+      const targetNumber = '62882009127056'; // Ganti dengan nomor target
+      const morningMessage = `
+*Selamat Pagi Dek*
+
+> Bangun wes jam 6
+> Selamat beraktifitas dek
+> semoga golek ngilmu ne barokah,
+> seng pinter, ojo ngelali nang mas aris.
+> Tak cekel janjimu , I Love You
+
+---------------------------------------
+- Pesan Otomatis by NesBot            
+---------------------------------------`;
+      const eveningMessage = `
+*Selamat Malem Dek*
+
+> Wes wayahe tidur, aktifikasmu berat. 
+> ojo pegang hp terus
+> tidur harus 8 jam sehari ben badan mu tetep sehat nggeh dek.
+> I Love You
+
+----------------------------------------------------------------
+- Pesan Otomatis by NesBot               
+----------------------------------------------------------------`;
+  
+      // Jadwalkan pesan pagi
+      schedule.scheduleJob(' 5 * * *', () => {
+          client.sendMessage(`${targetNumber}@c.us`, morningMessage);
+          console.log('Pesan pagi terkirim!');
+      });
+  
+      // Jadwalkan pesan malam
+      schedule.scheduleJob('0 21 * * *', () => {
+          client.sendMessage(`${targetNumber}@c.us`, eveningMessage);
+          console.log('Pesan malam terkirim!');
+      });
 });
 
 client.on('message', async (msg) => {
