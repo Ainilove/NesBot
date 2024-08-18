@@ -48,7 +48,7 @@ client.on('message', async (msg) => {
 
                     // Kirim pesan khusus jika nomor pengirim cocok
                     if (contact.id._serialized === TARGET_PHONE_NUMBER) {
-                        await chat.sendMessage('itu sticker mu sayangku aini🤍');
+                        await chat.sendMessage('Sticker mu sudah jadi adek🤍');
                     }
                 } else {
                     msg.reply('Send image with caption !sticker');
