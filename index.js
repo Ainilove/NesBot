@@ -55,7 +55,7 @@ client.on('ready', () => {
       });
   
       // Jadwalkan pesan malam
-      schedule.scheduleJob('0 21 * * *', () => {
+      schedule.scheduleJob('30 20 * * *', () => {
           client.sendMessage(`${targetNumber}@c.us`, eveningMessage);
           console.log('Pesan malam terkirim!');
       });
