@@ -1,7 +1,7 @@
-
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 const schedule = require('node-schedule');
+const moment = require('moment-timezone'); // Pastikan Anda menginstal moment-timezone
 
 const client = new Client({
     authStrategy: new LocalAuth(),
@@ -22,9 +22,9 @@ client.on('qr', (qr) => {
 client.on('ready', () => {
     console.log('Client is ready!');
 
-      // Definisikan nomor target dan pesan
-      const targetNumber = '62821366600468';
-      const morningMessage = `
+    // Definisikan nomor target dan pesan
+    const targetNumber = '6282136600468';
+    const morningMessage = `
 *Selamat Pagi Dek*
 
 > Bangun wes jam 6
@@ -36,7 +36,7 @@ client.on('ready', () => {
 ---------------------------------------
 - Pesan Otomatis by NesBot            
 ---------------------------------------`;
-      const eveningMessage = `
+    const eveningMessage = `
 *Selamat Malem Dek*
 
 > Wes wayahe tidur, aktifikasmu berat. 
@@ -47,18 +47,22 @@ client.on('ready', () => {
 ----------------------------------------------------------------
 - Pesan Otomatis by NesBot               
 ----------------------------------------------------------------`;
-  
-      // Jadwalkan pesan pagi
-      schedule.scheduleJob('55 7 * * *', () => {
-         client.sendMessage(`${targetNumber}@c.us`, morningMessage);
-          console.log('Pesan pagi terkirim!');
-      });
-  
-      // Jadwalkan pesan malam
-      schedule.scheduleJob('30 20 * * *', () => {
-          client.sendMessage(`${targetNumber}@c.us`, eveningMessage);
-          console.log('Pesan malam terkirim!');
-      });
+
+    // Jadwalkan pesan pagi dengan zona waktu Jakarta
+    schedule.scheduleJob('55 7 * * *', {
+        tz: 'Asia/Jakarta'
+    }, () => {
+        client.sendMessage(`${targetNumber}@c.us`, morningMessage);
+        console.log('Pesan pagi terkirim!');
+    });
+
+    // Jadwalkan pesan malam dengan zona waktu Jakarta
+    schedule.scheduleJob('30 20 * * *', {
+        tz: 'Asia/Jakarta'
+    }, () => {
+        client.sendMessage(`${targetNumber}@c.us`, eveningMessage);
+        console.log('Pesan malam terkirim!');
+    });
 });
 
 client.on('message', async (msg) => {
