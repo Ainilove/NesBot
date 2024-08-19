@@ -49,12 +49,8 @@ client.on('ready', () => {
 ----------------------------------------------------------------`;
   
       // Jadwalkan pesan pagi
-<<<<<<< HEAD
-      schedule.scheduleJob('37 7 * * *', () => {
-=======
-      schedule.scheduleJob('30 7 * * *', () => {
->>>>>>> 6a815ac4ef4df6954e60de45c1b20cab51bfa8e8
-          client.sendMessage(`${targetNumber}@c.us`, morningMessage);
+      schedule.scheduleJob('55 7 * * *', () => {
+         client.sendMessage(`${targetNumber}@c.us`, morningMessage);
           console.log('Pesan pagi terkirim!');
       });
   
@@ -73,7 +69,7 @@ client.on('message', async (msg) => {
 
     try {
         switch (msg.body.toLowerCase()) {
-            case '!ping':
+            case '!info':
                 msg.reply('pripun');
                 break;
 
