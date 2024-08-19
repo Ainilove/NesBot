@@ -23,7 +23,7 @@ client.on('ready', () => {
     console.log('Client is ready!');
 
       // Definisikan nomor target dan pesan
-      const targetNumber = '6282136600468'; // Ganti dengan nomor target
+      const targetNumber = '62821366600468';
       const morningMessage = `
 *Selamat Pagi Dek*
 
@@ -49,7 +49,11 @@ client.on('ready', () => {
 ----------------------------------------------------------------`;
   
       // Jadwalkan pesan pagi
+<<<<<<< HEAD
       schedule.scheduleJob('37 7 * * *', () => {
+=======
+      schedule.scheduleJob('30 7 * * *', () => {
+>>>>>>> 6a815ac4ef4df6954e60de45c1b20cab51bfa8e8
           client.sendMessage(`${targetNumber}@c.us`, morningMessage);
           console.log('Pesan pagi terkirim!');
       });
